@@ -11,7 +11,7 @@ from esphome.const import (
 )
 from .. import cd74hc4067_plus_ns, CD74HC4067PlusComponent
 
-CONF_MUX_ID = "mux"
+CONF_MUX = "mux"
 
 DEPENDENCIES = ["cd74hc4067_plus"]
 CODEOWNERS = ["@bdgit"]
@@ -37,7 +37,7 @@ CONFIG_SCHEMA = (
         {
             cv.GenerateID(): cv.declare_id(CD74HC4067PlusSensor),
             # cv.GenerateID(CONF_CD74HC4067_PLUS_ID): cv.use_id(CD74HC4067PlusComponent),
-            cv.Required(CONF_MUX_ID): cv.use_id(CD74HC4067PlusComponent),
+            cv.Required(CONF_MUX): cv.use_id(CD74HC4067PlusComponent),
             cv.Required(CONF_NUMBER): cv.int_range(0, 15),
         }
     )
@@ -50,7 +50,7 @@ async def to_code(config):
     await cg.register_component(var, config)
     await sensor.register_sensor(var, config)
 
-    mux = await cg.get_variable(config[CONF_MUX_ID])
+    mux = await cg.get_variable(config[CONF_MUX])
     cg.add(var.set_mux(mux))
 
     cg.add(var.set_pin(config[CONF_NUMBER]))

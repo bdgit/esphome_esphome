@@ -25,7 +25,7 @@ void CD74HC4067PlusSensor::dump_config() {
   LOG_UPDATE_INTERVAL(this);
 }
 
-//float CD74HC4067PlusSensor::get_setup_priority() const { return this->mux_->get_setup_priority() - 1.0f; }
+// float CD74HC4067PlusSensor::get_setup_priority() const { return this->mux_->get_setup_priority() - 1.0f; }
 
 }  // namespace cd74hc4067_plus
 }  // namespace esphome
